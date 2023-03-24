@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/fjc0k/vscode-ImageOptim/compare/v1.1.1...v1.1.2) (2023-03-24)
+
+### Bug Fixes
+
+- .vscodeignore ([035a7b0](https://github.com/fjc0k/vscode-ImageOptim/commit/035a7b02b6b1116737e135ef031e2e4e83d59603))
+
 ### [1.1.1](https://github.com/fjc0k/vscode-ImageOptim/compare/v1.1.0...v1.1.1) (2023-03-24)
 
 ### Bug Fixes
