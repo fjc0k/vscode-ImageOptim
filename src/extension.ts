@@ -1,24 +1,13 @@
 import * as vscode from 'vscode'
-import { Uploader, UploaderCopyKind } from './Uploader'
+import { Optimizer } from './Optimizer'
 
 export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand(
-      'uPic.uploadThenCopyUrls',
+      'ImageOptim.optimizeImages',
       (_, uris: vscode.Uri[]) => {
-        const uploader = new Uploader({
-          copyKind: UploaderCopyKind.urls,
-        })
-        uploader.upload(uris)
-      },
-    ),
-    vscode.commands.registerCommand(
-      'uPic.uploadThenCopyIndex',
-      (_, uris: vscode.Uri[]) => {
-        const uploader = new Uploader({
-          copyKind: UploaderCopyKind.index,
-        })
-        uploader.upload(uris)
+        const optimizer = new Optimizer()
+        optimizer.optimize(uris)
       },
     ),
   )

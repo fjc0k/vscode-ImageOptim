@@ -1,18 +1,18 @@
 {
-  "name": "vscode-upic",
-  "displayName": "uPic",
-  "version": "1.0.2",
-  "description": "Upload files via uPic.",
+  "name": "vscode-imageoptim",
+  "displayName": "ImageOptim",
+  "version": "1.0.0",
+  "description": "Optimize images via ImageOptim.",
   "categories": [
     "Other"
   ],
-  "homepage": "https://github.com/fjc0k/vscode-uPic#readme",
+  "homepage": "https://github.com/fjc0k/vscode-ImageOptim#readme",
   "bugs": {
-    "url": "https://github.com/fjc0k/vscode-uPic/issues"
+    "url": "https://github.com/fjc0k/vscode-ImageOptim/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fjc0k/vscode-uPic.git"
+    "url": "git+https://github.com/fjc0k/vscode-ImageOptim.git"
   },
   "license": "MIT",
   "author": {
@@ -30,21 +30,17 @@
   "contributes": {
     "commands": [
       {
-        "command": "uPic.uploadThenCopyUrls",
-        "title": "Upload via uPic & Copy Urls"
-      },
-      {
-        "command": "uPic.uploadThenCopyIndex",
-        "title": "Upload via uPic & Copy Index"
+        "command": "ImageOptim.optimizeImages",
+        "title": "Optimize images via ImageOptim"
       }
     ],
     "configuration": {
-      "title": "uPic",
+      "title": "ImageOptim",
       "properties": {
-        "uPic.cliPath": {
+        "ImageOptim.cliPath": {
           "type": "string",
-          "default": "/Applications/uPic.app/Contents/MacOS/uPic",
-          "description": "Absolute path to uPic bin file"
+          "default": "/Applications/ImageOptim.app/Contents/MacOS/ImageOptim",
+          "description": "Absolute path to ImageOptim bin file"
         }
       }
     },
@@ -52,20 +48,14 @@
       "explorer/context": [
         {
           "when": "isMac && isFileSystemResource",
-          "command": "uPic.uploadThenCopyUrls",
-          "group": "uPic@1"
-        },
-        {
-          "when": "isMac && isFileSystemResource",
-          "command": "uPic.uploadThenCopyIndex",
-          "group": "uPic@2"
+          "command": "ImageOptim.optimizeImages",
+          "group": "ImageOptim@1"
         }
       ]
     }
   },
   "activationEvents": [
-    "onCommand:uPic.uploadThenCopyUrls",
-    "onCommand:uPic.uploadThenCopyIndex"
+    "onCommand:ImageOptim.optimizeImages"
   ],
   "husky": {
     "hooks": {
@@ -96,12 +86,12 @@
     "lint-staged": "^10",
     "prettier": "^2",
     "rollup": "^2.26.9",
-    "rollup-plugin-esbuild": "^2.5.0",
+    "rollup-plugin-esbuild": "~2.5.0",
     "rollup-plugin-terser": "^7.0.1",
     "shx": "^0.3.2",
     "standard-version": "^9.0.0",
     "ts-node": "^9.0.0",
-    "typescript": "^3"
+    "typescript": "^4"
   },
   "engines": {
     "vscode": "^1.14.0"
