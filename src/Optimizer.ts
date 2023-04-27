@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import prettyBytes from 'pretty-bytes'
 import { ImageOptim } from './ImageOptim'
 import { join as joinPath } from 'path'
 import { readdirSync, statSync } from 'fs'
@@ -30,6 +31,17 @@ export class Optimizer {
       vscode.window.setStatusBarMessage(`No images.`, 3000)
       return
     }
+    const getTotalImageFileSize = () => {
+      let size = 0
+      for (const file of imageFiles) {
+        size += statSync(file).size
+      }
+      return size
+    }
+
+    const beforeSize = getTotalImageFileSize()
+    const beforeSizeHuman = prettyBytes(beforeSize, { space: false })
+
     const optimizingMessage = vscode.window.setStatusBarMessage(
       `${imageFiles.length} images optimizing...`,
     )
@@ -37,9 +49,16 @@ export class Optimizer {
     const imageOptim = new ImageOptim({ cliPath: config.cliPath })
     await imageOptim.optimize(imageFiles)
     optimizingMessage.dispose()
+
+    const afterSize = getTotalImageFileSize()
+    const afterSizeHuman = prettyBytes(afterSize, { space: false })
+    const savedSize = beforeSize - afterSize
+    const savedSizeHuman = prettyBytes(savedSize, { space: false })
+    const savedSizePercent = `${+((savedSize / beforeSize) * 100).toFixed(1)}%`
+
     vscode.window.setStatusBarMessage(
-      `${imageFiles.length} images optimized.`,
-      3000,
+      `${imageFiles.length} images optimized (${beforeSizeHuman}->${afterSizeHuman}, saved ${savedSizePercent}/${savedSizeHuman}).`,
+      5000,
     )
   }
 }

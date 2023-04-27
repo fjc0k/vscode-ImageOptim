@@ -96,5 +96,8 @@
   "engines": {
     "vscode": "^1.14.0"
   },
-  "icon": "logo.png"
+  "icon": "logo.png",
+  "dependencies": {
+    "pretty-bytes": "^6.1.0"
+  }
 }
